@@ -15,31 +15,33 @@ class TestMCD(unittest.TestCase):
                 self.assertEqual(expected, mcd.maximoComunDivisor(a, b))
 
 class TestAreaTriangulo(unittest.TestCase):
-    def test_calculo_area(self):
+    def test_calculo_area_lados(self):
         area_triangulo = AreaTriangulo()
         test_cases = [
-            (10, 5, 25),
-            (7, 3, 10.5),
-            (8, 6, 24),
+            (3, 4, 5, 6),
+            (6, 8, 10, 24),
+            (7, 10, 5, 16.24807680927192),
         ]
 
-        for base, altura, expected in test_cases:
-            with self.subTest(base=base, altura=altura, expected=expected):
-                self.assertEqual(expected, area_triangulo.calcular_area(base, altura))
+        for a, b, c, expected in test_cases:
+            with self.subTest(a=a, b=b, c=c, expected=expected):
+                self.assertAlmostEqual(expected, area_triangulo.calcular_area_lados(a, b, c), places=5)
 
-    def test_calculo_area_valores_invalidos(self):
+    def test_calculo_area_lados_valores_invalidos(self):
         area_triangulo = AreaTriangulo()
         invalid_test_cases = [
-            (-10, 5),
-            (10, -5),
-            (0, 5),
-            (10, 0),
+            (-3, 4, 5),
+            (3, -4, 5),
+            (3, 4, -5),
+            (1, 1, 3),
+            (1, 2, 4),
+            (2, 2, 5),
         ]
 
-        for base, altura in invalid_test_cases:
-            with self.subTest(base=base, altura=altura):
+        for a, b, c in invalid_test_cases:
+            with self.subTest(a=a, b=b, c=c):
                 with self.assertRaises(ValueError):
-                    area_triangulo.calcular_area(base, altura)
+                    area_triangulo.calcular_area_lados(a, b, c)
 
 if __name__ == '__main__':
     unittest.main()
