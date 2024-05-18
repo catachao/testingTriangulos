@@ -1,6 +1,6 @@
 import unittest
 from src.MCD import MCD
-from src.AreaTriangulo import AreaTriangulo
+from src.Triangulo import AreaTriangulo
 
 class TestMCD(unittest.TestCase):
     def test_maximo_comun_divisor(self):
@@ -14,8 +14,8 @@ class TestMCD(unittest.TestCase):
             with self.subTest(a=a, b=b, expected=expected):
                 self.assertEqual(expected, mcd.maximoComunDivisor(a, b))
 
-class TestAreaTriangulo(unittest.TestCase):
-    def test_calculo_area_lados(self):
+class TestTriangulo(unittest.TestCase):
+    def es_triangulo(self):
         area_triangulo = AreaTriangulo()
         test_cases = [
             (3, 4, 5, 6),
@@ -27,7 +27,7 @@ class TestAreaTriangulo(unittest.TestCase):
             with self.subTest(a=a, b=b, c=c, expected=expected):
                 self.assertAlmostEqual(expected, area_triangulo.calcular_area_lados(a, b, c), places=5)
 
-    def test_calculo_area_lados_valores_invalidos(self):
+    def no_es_triangulo(self):
         area_triangulo = AreaTriangulo()
         invalid_test_cases = [
             (-3, 4, 5),
